@@ -1,8 +1,48 @@
-# CKAD
+# Certified Kubernetes Administrator 
 
 
 
 ### Architecture
+
+
+
+
+##### PODs
+
+```
+kubectl run nginx --image nginx 
+
+
+##### Replication Controller
+
+Replication Controller api version is V1. and Selector is not required in the yaml defination file.
+
+```
+    kubectl create -f 
+    apiVersion: V1
+    kind: ReplicationController
+    metadata:
+      name:
+      labels:
+        app: webapp
+        type: frontend
+    spec:
+     template:
+       metadata:
+         name: webapp-pod
+         labels:
+           app: webapp
+           type: frontend
+       spec:
+         containers:
+         - name: nginx-container
+           image: nginx
+     replicas: 2         
+    
+    
+
+##### Replica Set
+High Availability , Load Balancing and Scaling
 
 
 
