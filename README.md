@@ -83,3 +83,52 @@ Replication Controller api version is V1. and Selector is not required in the ya
 
  High Availability , Load Balancing and Scaling. apiversion apps/v1
 
+
+
+##### Deployments
+
+
+Create a NGINX Pod
+```
+  kubectl run nginx --image=nginx
+```
+
+Generate POD Manifest YAML file by providing -o yaml and Use –dry-run option for not creating the nginx pod
+
+```
+kubectl run nginx --image=nginx --dry-run=client -o yaml
+```
+
+Create a deployment
+
+```
+kubectl create deployment --image=nginx nginx
+```
+
+Generate Deployment YAML file -o yaml and Don’t create it –dry-run
+
+```
+kubectl create deployment --image=nginx nginx --dry-run=client -o yaml
+```
+
+Generate Deployment YAML file using -o yaml option. Don’t create it use –dry-run option with 4 Replicas –replicas=4 and save it to a file.
+
+```
+
+kubectl create deployment --image=nginx nginx --dry-run=client -o yaml > nginx-deployment.yaml
+
+```
+
+Save it to a file, make necessary changes to the file (for example, adding more replicas) and then create the deployment.
+
+```
+kubectl create -f nginx-deployment.yaml
+```
+
+
+In k8s version 1.19+, we can specify the –replicas option to create a deployment with 4 replicas.
+
+```
+kubectl create deployment --image=nginx nginx --replicas=4 --dry-run=client -o yaml > nginx-deployment.yaml
+```
+
