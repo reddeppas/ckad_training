@@ -138,3 +138,28 @@ kubectl create deployment --image=nginx nginx --replicas=4 --dry-run=client -o y
 kubectl config set-context $(kubectl get current-context) --namespace=dev
 ```
 
+##### Imperative  vs Declarative 
+
+```
+kubectl run nginx --image=nginx
+
+kubectl create deployment nginx --image=nginx
+
+kubectl expose deployment nginx --port=80
+
+kubectl create deployment nginx
+
+kubectl set image deployment nginx nginx=nginx:1.18
+
+kubectl scale deployment nginx --replicas=5
+
+kubectl create -f nginx.yaml
+
+kubectl replace -f nginx.yaml
+
+kubectl delete -f nginx.yaml
+```
+
+```
+kubectl apply -f nginx.yaml
+```
