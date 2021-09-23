@@ -179,13 +179,12 @@ kubectl expose pod nginx --type=NodePort --port=80 --name=nginx-service --dry-ru
 
 ```
 
-Create a Service named redis-service of type ClusterIP to expose pod redis on port 6379
-
+ClusterIp
 ```
 kubectl expose pod redis --port=6379 --name redis-service --dry-run=client -o yaml
 ```
 
-(This will automatically use the pod’s labels as selectors)
+This will automatically use the pod’s labels as selectors.
 
 OR
 
@@ -193,6 +192,14 @@ OR
 kubectl create service clusterip redis --tcp=6379:6379 --dry-run=client -o yaml 
 ```
 
-This will not use the pods labels as selectors, instead it will assume selectors as app=redis. 
-You cannot pass in selectors as an option. So it does not work very well if your pod has a different label set. 
-So generate the file and modify the selectors before creating the service)
+this will assume selectors as app=redis. You cannot pass in selectors as an option. 
+
+Nodeport
+```
+kubectl expose pod nginx --type=NodePort --port=80 --name=nginx-service --dry-run=client -o yaml
+
+```
+
+```
+kubectl create service nodeport nginx --tcp=80:80 --node-port=30080 --dry-run=client -o yaml
+```
